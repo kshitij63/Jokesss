@@ -9,7 +9,9 @@ public class MyClass {
     public String tell_joke(){
         jokes=new ArrayList<>();
         jokes.add("jokes");
-        return jokes.get(0);
+        jokes.add("another joke");
+        jokes.add("yeaah!!another joke");
+        return jokes.get((int) (Math.random()*jokes.size()));
     }
 
 }

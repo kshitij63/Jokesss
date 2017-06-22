@@ -21,3 +21,37 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+task runBackendServer(dependsOn: ":GCEModuleLibrary:appengineRun") {
+    group = "Custom Testing Tasks"
+    description = "Start the backend server"
+    project(":GCEModuleLibrary").afterEvaluate { backend ->
+        backend.extensions.appengine.daemon = true
+    }
+    doLast {
+        println "started the server!"
+    }
+}
+
+task runTest {
+    group = "Custom Testing Tasks"
+    description = "Start the tests"
+    dependsOn ':app:connectedAndroidTest'
+    mustRunAfter runBackendServer
+}
+
+task shutdownBackendServer {
+    group = "Custom Testing Tasks"
+    description = "Shutdown the backend server"
+    dependsOn ':GCEModuleLibrary:appengineStop'
+    mustRunAfter runTest
+    doLast {
+        println "server shutdown!"
+    }
+}
+
+task automate(dependsOn: [runBackendServer, runTest, shutdownBackendServer]) {
+    group = "Automation"
+    description = "Automate testing process"
+    runTest.mustRunAfter runBackendServer
+    shutdownBackendServer.mustRunAfter runTest
+}

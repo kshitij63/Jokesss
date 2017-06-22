@@ -17,6 +17,9 @@ import java.io.IOException;
  */
 
 public class EndpointAsyncTask extends AsyncTask<Void,Void,String> {
+    Response mediateResponse;
+    EndpointAsyncTask(){}
+
     private static MyApi myApiService = null;
 Context context;
     EndpointAsyncTask(Context context){
@@ -49,6 +52,8 @@ Context context;
 
     @Override
     protected void onPostExecute(String s) {
-        Toast.makeText(context,s,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context,s,Toast.LENGTH_SHORT).show();
+        mediateResponse.finished(s);
     }
+
 }
