@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/GCEModuleLibrary/GCEModuleLibrary.iml" filepath="$PROJECT_DIR$/GCEModuleLibrary/GCEModuleLibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Jokesss.iml" filepath="$PROJECT_DIR$/Jokesss.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jokedisplaylibrary/jokedisplaylibrary.iml" filepath="$PROJECT_DIR$/jokedisplaylibrary/jokedisplaylibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tell_jokelibrary/tell_jokelibrary.iml" filepath="$PROJECT_DIR$/tell_jokelibrary/tell_jokelibrary.iml" />
+    </modules>
+  </component>
+</project>
