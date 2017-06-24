@@ -10,12 +10,13 @@ import android.widget.ProgressBar;
 import com.example.jokedisplaylibrary.DisplayActivity;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 
 
 public class MainActivity extends AppCompatActivity implements Response {
-    InterstitialAd mInterstitialAd;
-
+    //InterstitialAd mInterstitialAd;
+private AdView adView;
     String joke;
     Button button;
     ProgressBar bar;
@@ -24,19 +25,22 @@ public class MainActivity extends AppCompatActivity implements Response {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         button=(Button) findViewById(R.id.button);
+        adView=(AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().setGender(AdRequest.GENDER_MALE).build();
+        adView.loadAd(adRequest);
 
         bar=(ProgressBar) findViewById(R.id.bar);
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.interestial_ad_id));
+        //mInterstitialAd = new InterstitialAd(this);
+        //mInterstitialAd.setAdUnitId(getString(R.string.interestial_ad_id));
 
 
-        mInterstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-                requestNewInterstitial();
+      //  mInterstitialAd.setAdListener(new AdListener() {
+          //  @Override
+            //public void onAdClosed() {
+              //  requestNewInterstitial();
 
-            }
-        });
+        //    }
+        //});
 
         button.setOnClickListener(new View.OnClickListener() {
 
@@ -55,27 +59,27 @@ public class MainActivity extends AppCompatActivity implements Response {
 
 
     }
-    private void requestNewInterstitial() {
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .build();
+    //private void requestNewInterstitial() {
+      //  AdRequest adRequest = new AdRequest.Builder()
+        //        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+          //      .build();
 
-        mInterstitialAd.loadAd(adRequest);
-    }
+       // mInterstitialAd.loadAd(adRequest);
+    //}
 
 
     @Override
     public void finished(String joke) {
         bar.setVisibility(View.INVISIBLE);
         this.joke=joke;
-        if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-        }
-        else{
+      //  if (mInterstitialAd.isLoaded()) {
+          //  mInterstitialAd.show();
+        //}
+        //else{
             Intent intent=new Intent(MainActivity.this, DisplayActivity.class);
             intent.putExtra("jokes",joke);
             startActivity(intent);
-        }
+        //}
 
     }
 }
